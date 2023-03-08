@@ -63,7 +63,9 @@ public class PromptGenerators
         {
             Random randomNum = new Random();
             int random = randomNum.Next(0,50);
+
+            string stringPrompt = _promptContents[random];
             
-            return _promptContents[random];
+            return stringPrompt;
         }
     }

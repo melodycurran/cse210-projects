@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {   Journal journal = new Journal();
-        Entry entries = new Entry();
+        SaveJournalEntry saveFile = new SaveJournalEntry();
         int userOption = 0;
         
         List<string> optionsList = new List<string>(
@@ -30,16 +30,23 @@ class Program
 
             if (userOption == 1)
             {   
+                Entry entries = new Entry();
+
+                journal._entriesList.Add(entries);
+
                 entries.DisplayPrompt();
                 entries.GetDate();
-                entries.AskEntry();
+                entries.AskEntry();   
             }
             else if (userOption == 2)
             {   
                 journal.DisplayEntries();
             }
-        }
-        
 
+            else if (userOption == 3)
+            {   
+                saveFile.SaveJournal();
+            }
+        }
     }
 }

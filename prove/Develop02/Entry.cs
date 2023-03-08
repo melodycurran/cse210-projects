@@ -3,28 +3,25 @@ using System.Collections.Generic;
 
 public class Entry
 {   
-    public PromptGenerators prompts = new PromptGenerators();
-    public DateTime timeStamp = DateTime.Now;
-
+    public string _prompts = "";
+    public string _getDate = "";
+    public string _entry = "";
     //Methods
-    public string DisplayPrompt()
+    public void DisplayPrompt()
     {   
-        string _getPrompts = prompts.GeneratePrompt();
-
-        Console.WriteLine(_getPrompts);
-        return _getPrompts;
+        PromptGenerators prompts = new PromptGenerators();
+        _prompts = prompts.GeneratePrompt();
+        Console.WriteLine(_prompts);
     }
 
-    public string GetDate()
-    {
-        string _getDate = timeStamp.ToShortDateString();
-        return _getDate;
-
+    public void GetDate()
+    {   
+        DateTime timeStamp = DateTime.Now;
+        _getDate = timeStamp.ToShortDateString();
     }
 
-    public string AskEntry()
+    public void AskEntry()
     {   
-        string _entry = Console.ReadLine();
-        return _entry;
-    } 
+        _entry = Console.ReadLine();
+    }
 }
