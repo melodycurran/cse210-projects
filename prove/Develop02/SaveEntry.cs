@@ -23,10 +23,12 @@ public class SaveJournalEntry
         foreach (Journal journalEntry in _journalList)
         {   
             for (int i = 0; i < journalEntry._entriesList.Count; i++)
-            {
+            {   
+                Console.WriteLine("=======================================================");
                 Console.WriteLine(journalEntry._entriesList[i]._getDate);
                 Console.WriteLine(journalEntry._entriesList[i]._prompts);
                 Console.WriteLine(journalEntry._entriesList[i]._entry);
+                Console.WriteLine("=======================================================");
             }
         }
     }
