@@ -13,8 +13,8 @@ class Program
             "Please select one of the following options",
             "1. Write",
             "2. Display",
-            "3. Load",
-            "4. Save",
+            "3. Save",
+            "4. Load",
             "5. Quit",
             "What would you like to do? "
             }
@@ -45,7 +45,17 @@ class Program
 
             else if (userOption == 3)
             {   
-                saveFile.SaveJournal();
+                saveFile.GiveJournalTitle();
+                saveFile._journalList.Add(journal);
+            }
+            else if (userOption == 4)
+            {   
+                Console.Write("What is the file name? ");
+                string getFileName = Console.ReadLine();
+                if (getFileName == saveFile._journalName)
+                {
+                    saveFile.DisplayJounal();
+                }
             }
         }
     }

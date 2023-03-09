@@ -15,11 +15,11 @@ public class Journal
     {
         foreach (Entry entry in _entriesList)
         {   
-            Console.WriteLine();
+            Console.WriteLine("=======================================================");
             Console.WriteLine($"{entry._getDate}");
             Console.WriteLine($"{entry._prompts}");
             Console.WriteLine($"---> {entry._entry}");
-            Console.WriteLine();
+            Console.WriteLine("=======================================================");
         }
     }
 }
