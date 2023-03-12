@@ -28,25 +28,6 @@ public class Scriptures
 /// Method
     public void Display()
     {   
-        string[] getWords = _text.Split(' ');
-
-        foreach (var word in getWords)
-        {
-            for (int i = 0; i < _text.Length; i++)
-            {
-                Random randomNumber = new Random();
-                int rand = randomNumber(0,);
-
-                var chosenWord = getWords[rand];
-                foreach (char chars in chosenWord)
-                {
-                    for (int j = 0; j < chosenWord.Length; j++)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("_");
-                    }
-                }
-            }
-        }
+        Console.WriteLine(_text);
     }
 }
