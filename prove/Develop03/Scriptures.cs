@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Scriptures
 {
-    public string _text;
+    private string _text;
 
     public Scriptures()
     {   
