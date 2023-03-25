@@ -11,6 +11,7 @@ public class Goals
     public int _goalFrequency;
     public int _bonusPoints;
     public int _tracker;
+    public int _countCompleted;
 
 ////////////////Constructors///////////////////
     public Goals()
@@ -22,6 +23,7 @@ public class Goals
         _goalFrequency = 0;
         _bonusPoints = 0;
         _tracker = 0;
+        _countCompleted = 0;
     }
     
 ////////////Getters and setters//////////////////
@@ -47,8 +49,13 @@ public class Goals
         _points = int.Parse(Console.ReadLine());
     }
 
-    public void ComputeScore(int score)
+    public override string ToString()
     {
-        score += _points;
+        return $"{_goalName},{_goalShortDesc},{_points},{_bonusPoints}";
+    }
+
+    public int ComputeScore(int score)
+    {
+        return score += _points;
     }
 }

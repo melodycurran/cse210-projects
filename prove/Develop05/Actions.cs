@@ -8,8 +8,8 @@ public class Actions
     public List<Goals> _listGoals;
     public string _fileName;
     Goals goal = new Goals();
-    public string _completed;
     public int _score;
+    public string _scoreString;
 
 ////////////////Constructors////////////////////////
     public Actions()
@@ -17,8 +17,8 @@ public class Actions
         _userInput = 0;
         _listGoals = new List<Goals>();
         _fileName = "";
-        _completed = "X";
         _score = 0;
+        _scoreString = "";
     }
 
 
@@ -77,12 +77,39 @@ public class Actions
     }
 
 //////////////////Listing Goals//////////////////////
-    public void ListGoals(string completeMark = "")
+    public void ListGoals(int userSelection = -1)
     {
         foreach (Goals goalInput in _listGoals)
         {
-            Console.WriteLine($"[{completeMark}] {goalInput._goalName} ({goalInput._goalShortDesc})");
-            // Console.WriteLine(goalInput);
+            int index = _listGoals.IndexOf(goalInput);
+            bool complete = goalInput.GetIsComplete();
+
+            if (goalInput._tracker == 1)
+            {
+                if (index == userSelection || complete == true)
+                {
+                    Console.WriteLine($"[X] {goalInput._goalName} ({goalInput._goalShortDesc})");
+                }
+                else
+                {
+                    Console.WriteLine($"[ ] {goalInput._goalName} ({goalInput._goalShortDesc})");
+                }
+            }
+            else if (goalInput._tracker == 2)
+            {
+                Console.WriteLine($"[ ] {goalInput._goalName} ({goalInput._goalShortDesc})");
+            }
+            else if (goalInput._tracker == 3)
+            {
+                if (complete == true)
+                {
+                    Console.WriteLine($"[X] {goalInput._goalName} ({goalInput._goalShortDesc}) --- completed {goalInput._countCompleted}/{goalInput._goalFrequency}");
+                }
+                else
+                {
+                    Console.WriteLine($"[ ] {goalInput._goalName} ({goalInput._goalShortDesc}) --- completed by {goalInput._countCompleted}/{goalInput._goalFrequency}");
+                }
+            }
         }
     }
 
@@ -94,10 +121,11 @@ public class Actions
 
         using (StreamWriter saveFile = new StreamWriter(_fileName))
         {   
+            saveFile.WriteLine(_score);
             foreach (Goals goalInput in _listGoals)
             {   
-                saveFile.WriteLine($"{goalInput._goalName}, {goalInput._goalShortDesc}, {goalInput._points}");
-                // saveFile.WriteLine(goalInput);
+                // saveFile.WriteLine($"{goalInput._goalName}, {goalInput._goalShortDesc}, {goalInput._points}");
+                saveFile.WriteLine(goalInput);
             }
         }
     }
@@ -110,17 +138,21 @@ public class Actions
 
         if (fileNameUserInput == _fileName)
         {
-            _fileName = fileNameUserInput;
+            string[] lines = System.IO.File.ReadAllLines(_fileName);
 
-            string[] lines = System.IO.File.ReadAllLines(fileNameUserInput);
+            _scoreString = lines[0];
+
+            lines = lines.Skip(1).ToArray();
 
             foreach (string line in lines)
             {
                 string[] parts = line.Split(",");
-
                 string goalName = parts[0];
                 string goalDesc = parts[1];
                 string goalPoints = parts[2];
+                string bonus = parts[3];
+                string frequency = parts[4];
+                string completed = parts[5];
 
                 Console.WriteLine($"[ ] {goalName} ({goalDesc})");
             }
@@ -139,18 +171,33 @@ public class Actions
         Console.Write("Which goal did you accomplish? ");
         int userCompletedGoal = int.Parse(Console.ReadLine());
 
-        = userCompletedGoal;
+        Goals getGoal = _listGoals[userCompletedGoal - 1];
 
-        if (goal._tracker == 1)
+        if (getGoal._tracker == 1)
         {
-            ListGoals(_completed);
-            goal.ComputeScore(_score);
+            getGoal.SetIsComplete(true);
+            _score = getGoal.ComputeScore(_score);
+            ListGoals(userCompletedGoal - 1);
         }
-
+        else if (getGoal._tracker == 2)
+        {
+            _score = getGoal.ComputeScore(_score);
+            ListGoals(userCompletedGoal - 1);
+        }
+        else if (getGoal._tracker == 3)
+        {   
+            if ( getGoal._countCompleted < getGoal._goalFrequency)
+            {
+                getGoal._countCompleted++;
+                if (getGoal._countCompleted == getGoal._goalFrequency)
+                {
+                    getGoal.SetIsComplete(true);
+                    _score += getGoal._bonusPoints;
+                }
+            }
+            
+            _score = getGoal.ComputeScore(_score);
+            ListGoals(userCompletedGoal - 1);
+        }
     }
-
-    // public void ComputeScore()
-    // {
-
-    // }
 }
