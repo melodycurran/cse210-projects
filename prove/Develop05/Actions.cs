@@ -7,7 +7,6 @@ public class Actions
     private int _userInput;
     public List<Goals> _listGoals;
     public string _fileName;
-    Goals goal = new Goals();
     public int _score;
     public string _scoreString;
 
@@ -159,6 +158,7 @@ public class Actions
         }        
     }
 
+////////////////////////Record Events////////////////////////////////
     public void RecordEvent()
     {
         Console.WriteLine("The goals are: ");
