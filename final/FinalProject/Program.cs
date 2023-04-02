@@ -6,7 +6,7 @@ class Program
     static void Main(string[] args)
     {
         int userInput = 0;
-        string divider = "=================================================================================";
+        string divider = "===============================================================================";
         
         Console.WriteLine(divider);
         Console.WriteLine("---- Current interest rate is at 4% annually. No minimun deposit required! ----");
@@ -32,15 +32,20 @@ class Program
             
             Console.Write("Enter the number of the corresponding choice: ");
             userInput = int.Parse(Console.ReadLine());   
+
             Console.WriteLine(divider);
 
             if (userInput == 1)
             {
-                BankAcct bankDetails = new BankAcct();
-                Console.WriteLine(bankDetails.CreateBankAcctNum());
-                Console.WriteLine(bankDetails.GetCurrentDate());
-                Console.WriteLine(bankDetails.GetCurrentTime());
+                Profile person = new Profile();
+                person.Questions();
+                
                 Console.WriteLine(divider);
+            }
+            else if (userInput == 3)
+            {
+                Deposit deposit =  new Deposit();
+                deposit.ComputeBalance();
             }
         }
     }

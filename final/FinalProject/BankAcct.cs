@@ -3,7 +3,7 @@ using System;
 
 public class BankAcct
 {
-    private double _balance;
+    protected double _balance;
     private string _acctNum;
     private string _date;
     private string _time;
@@ -58,6 +58,11 @@ public class BankAcct
         DateTime timeNow = DateTime.Now;
         return timeNow.ToString("h:mm:ss tt");
 
+    }
+
+    public virtual double ComputeBalance()
+    {
+        return -1;
     }
     
 }
