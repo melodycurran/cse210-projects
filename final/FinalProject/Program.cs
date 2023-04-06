@@ -19,7 +19,7 @@ class Program
         
         Console.WriteLine(divider);
         Console.WriteLine("WELCOME TO MELODY'S BANK");
-        Console.WriteLine("---- Current interest rate is at 4% annually. No minimun deposit required! ----");
+        Console.WriteLine("---- No minimun deposit required! ----");
         Console.WriteLine(divider);
 
         emailAddress = retrieve.GetEmail();

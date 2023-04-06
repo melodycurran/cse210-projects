@@ -6,7 +6,6 @@ public class ViewBalance : BankAcct
 {
     public ViewBalance() : base()
     {
-
     }
 
     public override double ComputeBalance( double number)
