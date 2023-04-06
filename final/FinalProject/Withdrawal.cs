@@ -4,7 +4,7 @@ public class Withdrawal : BankAcct
 {
     private double _withdrawalAmt;
 
-    public Withdrawal()
+    public Withdrawal() : base()
     {
         _withdrawalAmt = 0;
     }
@@ -19,10 +19,17 @@ public class Withdrawal : BankAcct
     }
 
 
-    public override double ComputeBalance()
+    public double WithdrawalAmt()
     {
         Console.Write("How much do want to withdraw? ");
-        _withdrawalAmt = Convert.ToDouble(Console.ReadLine());
-        return  _balance += _withdrawalAmt;
+        
+        _withdrawalAmt = -(Convert.ToDouble(Console.ReadLine()));
+
+        return _withdrawalAmt;
+    }
+
+    public override string ToString()
+    {
+        return $"Date: {_date},Time: {_time},{_withdrawalAmt},{_balance},------------------";
     }
 }

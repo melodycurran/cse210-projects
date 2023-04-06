@@ -2,30 +2,15 @@ using System;
 using System.Collections.Generic;
 
 
-public class ViewBalance
+public class ViewBalance : BankAcct
 {
-    private List<BankAcct> _bankInfo;
-
-    public ViewBalance()
+    public ViewBalance() : base()
     {
-        _bankInfo = new List<BankAcct>();
+
     }
 
-    public List<BankAcct> GetBankInfo()
+    public override double ComputeBalance( double number)
     {
-        return _bankInfo;
-    }
-    public void SetBankInfo(List<BankAcct> bankInfo)
-    {
-        _bankInfo = bankInfo;
-    }
-
-
-    public void GetBalance()
-    {
-        // foreach (BankAcct balance in _bankInfo)
-        // {
-        //     Console.WriteLine(balance);
-        // }
+       return _balance += number;
     }
 }

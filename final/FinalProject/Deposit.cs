@@ -20,11 +20,15 @@ public class Deposit : BankAcct
     }
 
 
-    public override double ComputeBalance()
+    public double DepositAmt()
     {
         Console.Write("How much do you want to deposit? ");
-        _depositAmt = Convert.ToDouble(Console.ReadLine());
-        return _balance += _depositAmt;
+        return _depositAmt = Convert.ToDouble(Console.ReadLine());
+    }
+
+    public override string ToString()
+    {
+        return $"Date: {_date},Time: {_time},{_depositAmt},{_balance},------------------";
     }
 
 }
